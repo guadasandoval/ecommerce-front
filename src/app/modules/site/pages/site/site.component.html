@@ -1,0 +1,15 @@
+<body id="page-top">
+    <div id="wrapper"> 
+      <app-sidebar></app-sidebar> 
+      <div id="content-wrapper"> <!--class="d-flex flex-column"--> <!--Comentado para que no duplica la barra de scroll-->
+        <div id="content">
+          <app-topbar></app-topbar>
+          <router-outlet></router-outlet>
+          <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+        </div>
+     </div>
+    </div>  
+ </body>  
+

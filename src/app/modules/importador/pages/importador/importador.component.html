@@ -1,0 +1,90 @@
+
+<div class="container-fluid">
+  
+  <div class="card o-hidden border-0 shadow-lg my-0">
+    <div class="card-body p-0">
+    
+      
+      <div class="row justify-content-center my-0">
+        <!-- <div class="col-lg-7 "> -->
+          <div class="p-3">
+          <div class="text-center">
+              <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 25rem;" src="../../../../../assets/images/upload-1.png" alt="">
+              <h1 class="h4 text-gray-900 mb-4"> Subir archivo </h1>
+          </div>
+          
+            <form class="user" [formGroup]="uploadForm" enctype="multipart/form-data">
+              
+              <div class="custom-file">
+                <!-- <label class="custom-file-label" for="archivo1">Seleccionar archivo</label> -->
+                <input type="file" accept=".xlsx"  (change)="onFileSelect($event)" id="archivo1">
+                
+              </div>
+            
+              <div class="spinner-border text-primary" role="status" *ngIf="loading">
+                <span class="visually-hidden"></span>
+              </div>
+              <button (click)="onSubmit()" class="btn btn-primary btn-user btn-block my-3"  [disabled]="uploadForm.invalid">Subir</button>
+            
+            </form>
+          </div>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal danger-->
+<div class="modal fade" id="exampleModalDanger" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class=" modal-content card bg-danger text-white shadow">
+      
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 10rem;" src="../../../../../assets/images/checkmarkWrong.png" alt="">
+            <h1 class="h4 text-white-900 mb-4">Algo salió mal</h1>
+            <p>El archivo "{{uploadForm.get('archivos').value.name}}" no se pudo cargar correctamente.</p>
+            <p>Error: {{mensajeError}}</p>
+          </div>
+        </div>   
+
+      </div>     
+    </div>
+  </div>
+</div>
+
+<!-- Modal success-->
+<div class="modal fade" id="exampleModalSuccess" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <!-- <div class="modal-content"> -->
+    <div class="modal-content card bg-success text-white shadow">
+      <div class="modal-body">
+        <div class="text-center">
+          <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 10rem;" src="../../../../../assets/images/checkmarkOk.png" alt="">
+          <h1 class="h4 text-white-900 mb-4"> Carga finalizada</h1>
+          <p>Nombre del archivo: {{uploadForm.get('archivos').value.name}}</p>
+          <p>Registros cargados {{registrosCargados}} de {{registrosTotales}}</p>
+        </div>        
+      </div> 
+    </div>
+  </div>
+</div>
+
+<!-- Modal loading-->
+<div class="modal fade" id="exampleModalLoading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content card bg-warning text-white shadow">
+      <div class="modal-body">
+        <div class="text-center">
+          <br>
+          <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+          <h1 class="h4 text-white-900 mb-4">Cargando...</h1>
+          <p>Se esta cargando el archivo "{{uploadForm.get('archivos').value.name}}".</p>
+        </div>        
+      </div> 
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<!-- Sidebar -->
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+  
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item active ">
+    <a class="nav-link" routerLink="/site">
+    <span>Ecommerce</span></a>
+  </li>
+  
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Generales
+  </div>
+  
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li *ngIf="this.user?.RolId==1" class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Usuarios</span>
+    </a>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <!-- <h6 class="collapse-header">Listar usuarixs:</h6> -->
+        <a class="collapse-item" routerLink="/site/usuaries/alta-usuario">Crear usuario</a>
+        <a class="collapse-item" routerLink="/site/usuaries/usuarios">Usuarios</a>
+      </div>
+    </div>
+  </li>
+  <!-- solo admin -->
+    <div *ngIf="this.user?.RolId == 1">
+    <!-- Importador -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImp" aria-expanded="true" aria-controls="collapseImp">
+          <i class="fas fa-fw fa-file-import"></i>
+          <span>Importar</span>
+        </a>
+        <div id="collapseImp" class="collapse" aria-labelledby="headingImp" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" routerLink="/site/importar">Cargar archivo</a>        
+          </div>
+        </div>
+      </li>
+    </div>
+
+  
+  
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Ecommerce
+  </div>
+  
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>Productos</span>
+    </a>
+    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" routerLink="/site/personas/registros">Productos</a>
+        <a class="collapse-item" routerLink="/site/seleccion/nuevo-empleo">Crear producto</a>
+        <a class="collapse-item" routerLink="/site/seleccion">Lista de productos</a>
+      </div>
+    </div>
+  </li>
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+  
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+
+</ul>
+
+<!-- End of Sidebar -->    

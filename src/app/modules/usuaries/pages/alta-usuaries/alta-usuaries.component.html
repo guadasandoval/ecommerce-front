@@ -1,0 +1,146 @@
+<body> 
+  <div [formGroup]="formAltaUsuarix" (ngSubmit)="altaUsuarix()">
+    <div class="card o-hidden border-0 shadow-lg my-5 ">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row justify-content-center">
+          <div class="col-lg-7 ">
+            <div class="p-5 ">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Datos usuario</h1>
+              </div>
+              <form class="user">
+                <div class="form-group row">
+                 <!-- Nombre -->
+                  <div class="col-sm-6 mb-3 mb-sm-0" [formGroup]="formAltaUsuarix">
+                    <input formControlName="nombres" type="text" class="form-control form-control-user" placeholder="Nombre">
+                    <div *ngIf="formAltaUsuarix.get('nombres').errors && formAltaUsuarix.get('nombres').touched" class="is-invalid"></div>
+                    <div *ngIf="formAltaUsuarix.get('nombres').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                  </div>
+                  <!-- Apellido -->
+                  <div class="col-sm-6" [formGroup]="formAltaUsuarix">
+                    <input formControlName="apellidos" type="text" class="form-control form-control-user" placeholder="Apellido">
+                    <div *ngIf="formAltaUsuarix.get('apellidos').errors && formAltaUsuarix.get('apellidos').touched" class="is-invalid"></div>
+                    <div *ngIf="formAltaUsuarix.get('apellidos').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                  </div>
+                </div>
+                <!-- Email-->
+                <div class="form-group" [formGroup]="formAltaUsuarix">
+                  <input formControlName="email" type="email" class="form-control form-control-user" required pattern="" placeholder="Email">
+                  <div *ngIf="formAltaUsuarix.get('email').errors && formAltaUsuarix.get('email').touched" class="is-invalid"></div>
+                  <div *ngIf="formAltaUsuarix.get('email').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                </div>
+  
+                <!-- Contraseñas -->
+    
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0" [formGroup]="formAltaUsuarix">
+                   
+                      <input [type]="changetype?'password':'text'" formControlName="password" type="password" class="form-control form-control-user" placeholder="Ingrese contraseña">
+                      <span class="eyeicon" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i> </span>
+                      <div *ngIf="formAltaUsuarix.get('password').errors && formAltaUsuarix.get('password').touched" class="is-invalid"></div>
+                      <div *ngIf="formAltaUsuarix.get('password').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                      <div *ngIf="formAltaUsuarix.get('password').hasError('minlength')" class="invalid-feedback"> ¡La contraseña debe tener más de 8 caracteres!</div>
+                      <div *ngIf="formAltaUsuarix.get('password').hasError('maxlength')"class="invalid-feedback"> ¡La contraseña no puede tener más de 100 caracteres!</div>
+                      </div>
+
+                  <div class="col-sm-6" [formGroup]="formAltaUsuarix">
+                      <input [type]="changetype?'password':'text'" formControlName="confirmPassword" type="password" class="form-control form-control-user" placeholder="Repita contraseña">
+                      <span class="eyeicon" (click)="viewpass()"><i [ngClass]="visible?'fa fa-eye':'fa fa-eye-slash'"></i> </span>
+                      <div *ngIf="formAltaUsuarix.get('confirmPassword').errors && formAltaUsuarix.get('confirmPassword').touched" class="is-invalid"></div>
+                      <div *ngIf="formAltaUsuarix.get('confirmPassword').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                      <div *ngIf="formAltaUsuarix.get('confirmPassword').hasError('minlength')" class="invalid-feedback">¡La contraseña debe tener más de 8 caracteres!</div>
+                      <div *ngIf="formAltaUsuarix.get('confirmPassword').hasError('maxlength')" class="invalid-feedback"> ¡La contraseña no puede tener más de 100 caracteres!</div>
+                      <div *ngIf="formAltaUsuarix.get('confirmPassword').hasError('not_matching')" class="invalid-feedback"> ¡La contraseña no coincide!</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group" [formGroup]="formAltaUsuarix">
+                  <h4 class="small font-weight-bold required-field">Habilitado</h4>
+                  <select formControlName="habilitado" class="custom-select custom-select-sm form-control form-control-sm"  placeholder="Habilitado">
+                    <option [ngValue]="true">Si</option>
+                    <option [ngValue]="false">No</option>
+                  </select>
+                  <div *ngIf="formAltaUsuarix.get('habilitado').errors && formAltaUsuarix.get('habilitado').touched" class="is-invalid"></div>
+                    <div *ngIf="formAltaUsuarix.get('habilitado').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                </div>
+                <div class="form-group row" >
+                  <div class="col-sm-6 mb-3 mb-sm-0" [formGroup]="formAltaUsuarix">
+                    <h4 class="small font-weight-bold required-field">Grupo</h4>
+                    <select formControlName="grupoId" class="custom-select custom-select-sm form-control form-control-sm">
+                      <option value="" disabled selected>Seleccionar Grupo</option>
+                      <option *ngFor="let grupo of grupos" [(ngValue)]="grupo.ID">{{ grupo.Nombre }}</option>
+                    </select>
+                    <div *ngIf="formAltaUsuarix.get('grupoId').errors && formAltaUsuarix.get('grupoId').touched" class="is-invalid"></div>
+                    <div *ngIf="formAltaUsuarix.get('grupoId').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                  </div>
+                  <div class="col-sm-6" [formGroup]="formAltaUsuarix">
+                    <h4 class="small font-weight-bold required-field">Rol</h4>
+                    <select formControlName="rolId" class="custom-select custom-select-sm form-control form-control-sm">
+                      <option value="" disabled selected>Seleccionar Rol</option>
+                      <option *ngFor="let rol of roles" [(ngValue)]="rol.ID">{{ rol.Nombre }}</option>
+                    </select>
+                    <div *ngIf="formAltaUsuarix.get('rolId').errors && formAltaUsuarix.get('rolId').touched" class="is-invalid"></div>
+                    <div *ngIf="formAltaUsuarix.get('rolId').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                  </div>
+                </div>
+                <button type="submit" [disabled]="formAltaUsuarix.invalid" class="btn btn-primary btn-user btn-block"data-toggle="modal" data-target="#modalUsuarix">Crear nuevo usuario</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+
+   <!-- Modal Success-->
+   <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-success text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 8rem;" src="../../../../../assets/images/checkmarkOk.png" alt="">
+            <h1 class="h4 text-white-900 mb-4"> ¡Hecho!</h1>
+            <p>Usuarix actualizado exitósamente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Danger-->
+  <div class="modal fade" id="modalDanger" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-danger text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 8rem;" src="../../../../../assets/images/checkmarkWrong.png" alt="">
+            <h1 class="h4 text-white-900 mb-4"> ¡Algo salio mal!</h1>
+            <p>Error: {{mensajeError}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal loading-->
+  <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-warning text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <br>
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+            <h1 class="h4 text-white-900 mb-4">Actualizando Usuarix...</h1>
+            <p>Se esta actualizando el usuarix.</p>
+          </div>        
+        </div> 
+      </div>
+    </div>
+  </div>
+

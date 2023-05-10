@@ -1,0 +1,167 @@
+<body> 
+  <div class="container-fluid">
+    <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-end">
+  <!-- Button trigger modal -->
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
+      <i class="fas fa-key"></i> Cambiar contraseña</button>
+  </div>
+  </div>
+
+    <div [formGroup]="formEditUsuarix" (ngSubmit)="editarDatos()">
+      <div class="card o-hidden border-0 shadow-lg my-5 ">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row justify-content-center">
+            <div class="col-lg-7 ">
+              <div class="p-5 ">
+                <div class="text-center">
+                  <h1 class="h4 text-gray-900 mb-4">Usuario: {{usuarixData?.Nombres}} {{usuarixData?.Apellidos}}</h1>
+                </div>
+                <form class="user">
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0" [formGroup]="formEditUsuarix">
+                      <h4 class="small font-weight-bold required-field">Nombres</h4>
+                      <input formControlName="Nombres" type="text" class="form-control form-control-user" placeholder="Nombres">
+                    </div>
+                    <div class="col-sm-6" [formGroup]="formEditUsuarix">
+                      <h4 class="small font-weight-bold required-field">Apellidos</h4>
+                      <input formControlName="Apellidos" type="text" class="form-control form-control-user" placeholder="Apellidos">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group" [formGroup]="formEditUsuarix">
+                    <h4 class="small font-weight-bold required-field">Email</h4>
+                    <input formControlName="Email" type="email" class="form-control form-control-user" placeholder="Email">
+                    <div *ngIf="formEditUsuarix.controls['Email'].hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                    <div *ngIf="formEditUsuarix.controls['Email'].errors?.email" class="invalid-feedback" >Email inválido</div> 
+                    <div *ngIf="formEditUsuarix.controls['Email'].errors?.pattern" class="text-danger">Lo sentimos, solo se permiten correos mingeneros.gob.ar</div>
+                  </div>
+                
+                  <div class="form-group" [formGroup]="formEditUsuarix">
+                    <h4 class="small font-weight-bold required-field">Habilitado</h4>
+                    <select formControlName="Habilitado" class="custom-select custom-select-sm form-control form-control-sm"  placeholder="Habilitado">
+                      <option option hidden value="" disabled selected>Habilitado</option>
+                      <option [ngValue]="true">Si</option>
+                      <option [ngValue]="false">No</option>
+                    </select>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0" [formGroup]="formEditUsuarix">
+                      <h4 class="small font-weight-bold required-field">Grupo</h4>
+                      <select formControlName="GrupoId" class="custom-select custom-select-sm form-control form-control-sm" placeholder="Grupo">
+                        <option option hidden value="" disabled selected>Grupo</option>
+                        <option *ngFor="let grupo of grupos" [(ngValue)]="grupo.ID">{{ grupo.Nombre }}</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-6" [formGroup]="formEditUsuarix">
+                      <h4 class="small font-weight-bold required-field">Rol</h4>
+                      <select formControlName="RolId" class="custom-select custom-select-sm form-control form-control-sm" placeholder="Rol">
+                        <option option hidden value="" disabled selected>Rol</option>
+                        <option *ngFor="let rol of roles" [(ngValue)]="rol.ID">{{ rol.Nombre }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row d-sm-flex align-items-center justify-content-end">
+                  <button class="btn btn-danger btn-primary mb-0 btn-form-update" (click)="return()">Cancelar</button>
+                  &nbsp;
+                  &nbsp;
+                  <button type="submit" [disabled]="formEditUsuarix.invalid" class="btn btn-success btn-primary mb-0 btn-form-update">Enviar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  
+  
+  <!-- Modal -->
+<div [formGroup]="formPassword" (ngSubmit)="resetPassword()" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Cambiar contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="resetPassword()" >
+        <div class="modal-body">
+          <div class="form-group" [formGroup]="formPassword">
+            <label for="recipient-name" class="col-form-label">Nueva contraseña:</label>
+            <input type="password" formControlName="Password" class="form-control form-control-user" minlength="8" id="Password" placeholder="Contraseña">
+            <div *ngIf="formPassword.get('Password').errors && formPassword.get('Password').touched" class="is-invalid"></div>
+            <div *ngIf="formPassword.get('Password').hasError('required')" class="invalid-feedback">Campo obligatorio</div>
+            <div *ngIf="formPassword.get('Password').hasError('minlength')" class="invalid-feedback">Debe contener más de 8 caracteres</div>  
+        </div>
+          <div class="form-group" [formGroup]="formPassword"> 
+            <label for="recipient-name" class="col-form-label">Reescribir contraseña:</label>
+            <input type="password" formControlName="ConfirmPassword" class="form-control form-control-user" minlength="8" id="ConfirmPassword" placeholder="Contraseña">
+            <div *ngIf="formPassword.get('ConfirmPassword').errors && formPassword.get('ConfirmPassword').touched" class="is-invalid"></div>
+            <div *ngIf="formPassword.get('ConfirmPassword').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+            <div *ngIf="formPassword.get('ConfirmPassword').hasError('minlength')" class="invalid-feedback">Debe contener más de 8 caracteres</div>   
+            <div *ngIf="formPassword.get('ConfirmPassword').hasError('not_matching')" class="invalid-feedback"> ¡La contraseña no coincide!</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" [disabled]="formPassword.invalid" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal Success-->
+  <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-success text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 8rem;" src="../../../../../assets/images/checkmarkOk.png" alt="">
+            <h1 class="h4 text-white-900 mb-4"> ¡Hecho!</h1>
+            <p *ngIf="isUsuario">Usuarix actualizado exitósamente.</p>
+            <p *ngIf="!isUsuario">Contraseña actualizada exitósamente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Danger-->
+  <div class="modal fade" id="modalDanger" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-danger text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 3rem;" src="../../../../../assets/images/checkmarkWrong.png" alt="">
+            <h1 class="h4 text-white-900 mb-4"> ¡Algo salio mal!</h1>
+            <p>Error: {{mensajeError}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal loading-->
+  <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content card bg-warning text-white shadow">
+        <div class="modal-body">
+          <div class="text-center">
+            <br>
+            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+            <h1 *ngIf="isUsuario" class="h4 text-white-900 mb-4">Actualizando Usuarix...</h1>
+            <h1 *ngIf="!isUsuario" class="h4 text-white-900 mb-4">Actualizando Contraseña...</h1>
+            <p *ngIf="isUsuario">Se esta actualizando el usuarix.</p>
+            <p *ngIf="!isUsuario">Se esta actualizando la contraseña.</p>
+          </div>        
+        </div> 
+      </div>
+    </div>
+  </div>
+  </body>

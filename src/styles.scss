@@ -1,0 +1,162 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./assets/bootstrapTheme/css/sb-admin-2.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "./assets/bootstrapTheme/vendor/fontawesome-free/scss/fontawesome.scss";
+@import "./assets/bootstrapTheme/vendor/fontawesome-free/scss/solid.scss";
+@import "./assets/bootstrapTheme/vendor/fontawesome-free/css/all.min.css";
+
+.dnone {
+  display: none;
+}
+
+
+.top-bar-brand {
+  position: relative;
+
+  &::after {
+    content: '%VERSION%';
+    font-size: 75%;
+    right: -40px;
+    bottom: 8px;
+    color: aliceblue;
+  }
+}
+
+.checked-select-all{
+    z-index: 2;
+  }
+
+
+.icon-mostrar-passwd{
+    cursor: pointer;
+}
+
+.span-icon-passwd{
+  position: absolute;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  right: 80px;
+  margin-top: 12px;
+}
+
+.input-icon-passwd{
+  padding-left: 25px;
+  height: 20px;
+}
+
+.body-login {
+  min-height: 100vh;
+}
+
+.container-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.required-field::after {
+  content: "*";
+  color: red;
+  margin-left:2px
+}
+
+//Table
+.table-cell {
+  text-align: center;
+}
+
+.btn-form-update{
+  font-size: 0.8rem;
+  border-radius: 10rem;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.first-letter {
+  text-transform: capitalize;
+}
+
+.btn-circle.btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.espacio-right {
+  margin-right: 10px;
+}
+
+.container-login2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.right-login {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  width: 70%;
+  top: 25%;
+}
+
+.layer-col-8-login{
+  z-index: 3;
+}
+
+.margin-bottom0 {
+  margin-bottom: 0px;
+}
+
+.pf {
+  margin-top: 25px;
+}
+
+
+
+.card-dos {
+  max-width: 800px;
+  padding-bottom: 25px; 
+}
+
+.icon {
+  text-align: center;
+}
+
+.accordion {
+  height: 100%;
+}
+
+.text-danger {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.eyeicon {
+  position: absolute;
+  right: 40px;
+  top: 15px;
+  cursor: pointer;
+  color: #0000002e;
+}
+
+.version1 {
+  color: white;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.bottom0 {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
