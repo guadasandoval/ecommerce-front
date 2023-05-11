@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, ReplaySubject, Subscription } from 'rxjs';
 import { ServerResponse, ServerResponseGrupo, ServerResponseRol, STATUS_ERROR, STATUS_OK } from 'src/app/modules/app-common/interfaces/server-response';
+import { PasswordValidators } from 'src/app/modules/usuario-actual/pages/cambiar-contrasena/password-validators';
 import { Grupo } from '../../interfaces/grupo';
 import { Rol } from '../../interfaces/rol';
 import { Usuarie } from '../../interfaces/usuarie';
 import { UsuariesService } from '../../services/usuaries.service';
-import { PasswordValidators } from 'src/app/modules/usuarix-actual/pages/cambiar-contrasena/password-validators';
+
 
 @Component({
   selector: 'app-usuarios-edit',

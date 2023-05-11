@@ -21,7 +21,7 @@
                         <div *ngIf="formPassword.get('Password').hasError('minlength')" class="invalid-feedback">Debe contener más de 8 caracteres</div>  
                     </div>
                       <div class="form-group" [formGroup]="formPassword"> 
-                        <label for="recipient-name" class="col-form-label">Reescribir contraseña:</label>
+                        <label for="recipient-name" class="col-form-label">Confirmar contraseña:</label>
                         <input type="password" formControlName="ConfirmPassword" class="form-control form-control-user" minlength="8" id="ConfirmPassword" placeholder="Contraseña">
                         <div *ngIf="formPassword.get('ConfirmPassword').errors && formPassword.get('ConfirmPassword').touched" class="is-invalid"></div>
                         <div *ngIf="formPassword.get('ConfirmPassword').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>

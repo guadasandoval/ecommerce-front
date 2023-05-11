@@ -1,9 +1,9 @@
 import { LoginInfo } from './categorias/login-info';
 import { Rol } from '../../usuaries/interfaces/rol';
 import { Grupo } from '../../usuaries/interfaces/grupo';
-import { MisDatos } from '../../usuarix-actual/interfaces/mis-datos';
 import { Usuarie } from '../../usuaries/interfaces/usuarie';
 import { Categoria } from './categorias/categoria';
+import { MisDatos } from '../../usuario-actual/interfaces/mis-datos';
 
 
 export type ServerResponseStatus = string;

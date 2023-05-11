@@ -25,7 +25,7 @@ export const crearProducto: string = '/api/crear-producto';
 export const importar: string = '/api/importar-productos';
 
 // ----------------------------------------------------------------------------
-// Usuarixs
+// Usuarios
 // ----------------------------------------------------------------------------
 
 export const altaUsuario: string = '/api/altausuario';
@@ -41,7 +41,7 @@ export const grupos: string = '/api/usuarios/grupos-select';
 export const password: string = '/api/usuarios/usuarios-password/';
 
 // ----------------------------------------------------------------------------
-// Usuarix Actual
+// Usuario Actual
 // ----------------------------------------------------------------------------
 
 export const misDatos: string = '/api/usuario-actual/mis-datos';

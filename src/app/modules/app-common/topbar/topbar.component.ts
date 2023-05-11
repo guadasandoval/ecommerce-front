@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MisDatos } from '../../usuarix-actual/interfaces/mis-datos';
-import { UsuarixActualService } from '../../usuarix-actual/services/usuarix-actual.service';
+import { MisDatos } from '../../usuario-actual/interfaces/mis-datos';
+import { UsuarioActualService } from '../../usuario-actual/services/usuario-actual.service';
 import { AuthServiceService } from '../services/auth-service.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class TopbarComponent {
 
 misDatos : MisDatos;
   
-constructor(private router: Router, private authService: AuthServiceService, private usuarixActualService: UsuarixActualService) {
+constructor(private router: Router, private authService: AuthServiceService, private usuarioActualService: UsuarioActualService) {
   this.mostrarMisDatos();
 }
 
@@ -22,7 +22,7 @@ logoutUser(){
 }
 
 mostrarMisDatos(){
-  this.usuarixActualService.getMisDatos().subscribe(response => {
+  this.usuarioActualService.getMisDatos().subscribe(response => {
     this.misDatos = response.data;
   }) 
 }

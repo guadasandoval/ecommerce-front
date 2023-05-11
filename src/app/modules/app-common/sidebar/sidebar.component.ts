@@ -3,8 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TypeUser } from '../../usuaries/interfaces/typeUser';
 import { Usuarie } from '../../usuaries/interfaces/usuarie';
 import { UsuariesService } from '../../usuaries/services/usuaries.service';
-import { MisDatos } from '../../usuarix-actual/interfaces/mis-datos';
-
+import { MisDatos } from '../../usuario-actual/interfaces/mis-datos';
 
 @Component({
   selector: 'app-sidebar',

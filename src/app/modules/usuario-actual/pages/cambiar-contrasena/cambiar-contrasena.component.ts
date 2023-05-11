@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest, ReplaySubject } from 'rxjs';
 import { ServerResponse, STATUS_ERROR, STATUS_OK } from 'src/app/modules/app-common/interfaces/server-response';
-import { UsuarixActualService } from '../../services/usuarix-actual.service';
+import { UsuarioActualService } from '../../services/usuario-actual.service';
 import { PasswordValidators } from './password-validators';
 
 @Component({
@@ -17,7 +17,7 @@ export class CambiarContrasenaComponent implements OnInit {
   mensajeError: string = '';
   isUsuario: boolean = true;
 
-  constructor(public usuarieService : UsuarixActualService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(public usuarioService : UsuarioActualService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.buildFormResetPassword();
@@ -56,7 +56,7 @@ export class CambiarContrasenaComponent implements OnInit {
     });
     $('#modalLoading')['modal']('show');
 
-    const combinado = combineLatest([subject, this.usuarieService.cambiarContrasena(this.formPassword.value)])
+    const combinado = combineLatest([subject, this.usuarioService.cambiarContrasena(this.formPassword.value)])
     const subscription = combinado.subscribe(([show,response]) => {
       if(show && response) {
         if(response.status == STATUS_OK) {

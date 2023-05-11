@@ -5,15 +5,13 @@ import { SiteComponent } from './pages/site/site.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UsuariesModule } from '../usuaries/usuaries.module';
-
 import { AppCommonModule } from '../app-common/app-common.module';
 import { TableroModule } from '../tablero/tablero.module';
-
 import { ImportadorModule } from '../importador/importador.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyHttpInterceptor } from '../app-common/services/my-http-interceptor';
-import { UsuarixActualModule } from '../usuarix-actual/usuarix-actual.module';
-import { PersonasFortalecimientoModule } from '../personas-fortalecimiento/personas-fortalecimiento.module';
+import { UsuarioActualModule } from '../usuario-actual/usuario-actual.module';
+import { ProductosModule } from '../productos/productos.module';
 
 
 
@@ -30,8 +28,8 @@ import { PersonasFortalecimientoModule } from '../personas-fortalecimiento/perso
     TableroModule,
     UsuariesModule,
     ImportadorModule,
-    PersonasFortalecimientoModule,
-    UsuarixActualModule,
+    UsuarioActualModule,
+    ProductosModule
     
   ],
   providers: [

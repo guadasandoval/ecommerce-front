@@ -8,14 +8,13 @@ const routes: Routes = [{
   
   children: [
     
-    // En la vista principal se carga el tablero
     {
       path: "", 
       loadChildren: () => import("src/app/modules/tablero/tablero.module").then((m) => m.TableroModule),
     },
 
     {
-      path: "usuaries",
+      path: "usuarios",
       loadChildren: () => import("src/app/modules/usuaries/usuaries.module").then((m) => m.UsuariesModule),
     },
     
@@ -30,9 +29,9 @@ const routes: Routes = [{
     },
 
     {
-      path: 'usuarix-actual',
+      path: 'usuario-actual',
       loadChildren: () =>
-        import('src/app/modules/usuarix-actual/usuarix-actual.module').then((m) => m.UsuarixActualModule),
+        import('src/app/modules/usuario-actual/usuario-actual.module').then((m) => m.UsuarioActualModule),
     },
   ],
 },

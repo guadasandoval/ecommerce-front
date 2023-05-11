@@ -1,0 +1,128 @@
+<body>
+    <form class="user needs-validation" novalidate [formGroup]="formAltaProducto" (ngSubmit)="crearProducto()">
+    
+      <div  class="container">
+        <div class="card o-hidden border-0 shadow-lg my-5 ">
+          <div class="card-body p-0">
+            <div class="row justify-content-center">
+              <div class="col-lg-7">
+
+                  <div class="p-5">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Datos del producto</h1>
+                    </div>
+                  </div>
+  
+                  <div>
+                    <h4 class="small font-weight-bold required-field">Nombre</h4>
+                    <input formControlName="nombre" type="text" class="form-control form-control-user" required pattern=""> 
+                    <div *ngIf="formAltaProducto.get('nombre').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+  
+                  </div>
+                  <br>
+  
+                  <div>
+                    <h4 class="small font-weight-bold required-field">Cantidad de stock</h4>
+                    <input formControlName="stock" type="text" class="form-control form-control-user"  required pattern=""> 
+                    <div *ngIf="formAltaProducto.get('stock').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                  </div>
+                  <br>
+                  <div>
+                    <h4 class="small font-weight-bold">Descripción</h4>
+                    <input formControlName="descripcion" type="text" class="form-control form-control-user"> 
+                  </div>
+                  <br>
+                
+                  <div>
+                    <h4 class="small font-weight-bold">Precio</h4>
+                    <input formControlName="precio" type="text" class="form-control form-control-user"> 
+                  </div>
+                  <br>
+           
+                  <div class="form-group row">            
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <h4 class="small font-weight-bold required-field">Categorias</h4>
+                      <select formControlName="idCategoria" class="custom-select custom-select-sm form-control form-control-sm" [ngClass]="{'is-invalid': submitted && formAltaProducto.get('idCategoria').errors}">
+                        <option value="" selected disabled>Seleccionar categoria:</option>
+                        <option *ngFor="let cat of categoriasList" [(ngValue)]="cat.Id">{{ cat.Nombre }}</option>
+                      </select>
+                      <div *ngIf="formAltaProducto.get('idCategoria').errors && formAltaProducto.get('idCategoria').touched" class="is-invalid"></div>
+                      <div *ngIf="formAltaProducto.get('idCategoria').hasError('required')" class="invalid-feedback" >Campo obligatorio</div>
+                      <br>
+                    </div>
+                  </div>
+              
+                <button type="submit"  class="btn btn-primary btn-user btn-block">Crear producto</button>
+                <br>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  
+    <!-- Modal Success-->
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content card bg-success text-white shadow">
+          <div class="modal-body">
+            <div class="text-center">
+              <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 8rem;" src="../../../../../assets/images/checkmarkOk.png" alt="">
+              <h1 class="h4 text-white-900 mb-4"> ¡Hecho!</h1>
+              <p>Producto creado exitósamente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal Danger-->
+    <div class="modal fade" id="modalDanger" tabindex="-1" role="dialog" aria-labelledby="modalOKTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content card bg-danger text-white shadow">
+          <div class="modal-body">
+            <div class="text-center">
+              <img class="img-fluid px-3 px-sm-2 mt-3 mb-2" style="width: 8rem;" src="../../../../../assets/images/checkmarkWrong.png" alt="">
+              <h1 class="h4 text-white-900 mb-4"> ¡Algo salio mal!</h1>
+              <p>Error: {{mensajeError}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal loading-->
+    <div class="modal fade" id="modalLoading" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content card bg-warning text-white shadow">
+          <div class="modal-body">
+            <div class="text-center">
+              <br>
+              <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+              <h1 class="h4 text-white-900 mb-4">Creando el producto...</h1>
+            </div>        
+          </div> 
+        </div>
+      </div>
+    </div>
+    
+    <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
+    
+</body>  

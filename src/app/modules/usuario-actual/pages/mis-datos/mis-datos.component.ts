@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MisDatos } from '../../interfaces/mis-datos';
-import { UsuarixActualService } from '../../services/usuarix-actual.service';
+import { UsuarioActualService } from '../../services/usuario-actual.service';
 
 @Component({
   selector: 'app-mis-datos',
@@ -9,14 +9,14 @@ import { UsuarixActualService } from '../../services/usuarix-actual.service';
 export class MisDatosComponent implements OnInit {
   misDatos : MisDatos;
   
-  constructor(private usuarixActualService: UsuarixActualService) { 
+  constructor(private usuarioActualService: UsuarioActualService) { 
     this.mostrarMisDatos()
   }
 
   ngOnInit(): void {}
   
   mostrarMisDatos(){
-    this.usuarixActualService.getMisDatos().subscribe(response => {
+    this.usuarioActualService.getMisDatos().subscribe(response => {
       this.misDatos = response.data;
     }) 
   }

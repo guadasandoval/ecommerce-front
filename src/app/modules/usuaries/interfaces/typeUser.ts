@@ -1,7 +1,6 @@
-import { MisDatos } from "../../usuarix-actual/interfaces/mis-datos";
-
+import { MisDatos } from "../../usuario-actual/interfaces/mis-datos";
 
 export interface TypeUser{
-    token:string;
-    usuario:MisDatos
+    token: string;
+    usuario: MisDatos
 }
